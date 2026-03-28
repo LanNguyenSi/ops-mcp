@@ -1,0 +1,18 @@
+{
+  "name": "ops-mcp",
+  "private": true,
+  "description": "MCP server for the Triologue agent-ops platform",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm test --workspaces",
+    "lint": "npm run lint --workspaces --if-present"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LanNguyenSi/ops-mcp.git"
+  },
+  "license": "MIT"
+}
