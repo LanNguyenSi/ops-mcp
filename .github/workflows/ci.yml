@@ -10,17 +10,17 @@ jobs:
   quality:
     name: Quality
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/mcp
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: "npm"
-          cache-dependency-path: packages/mcp/package-lock.json
       - run: npm ci
-      - run: npx tsc --noEmit
-      - run: npm test
-      - run: npm run build
+      - name: TypeCheck
+        run: npm run build --workspace=packages/mcp -- --noEmit || npx tsc --noEmit
+        working-directory: packages/mcp
+      - name: Test
+        run: npm test --workspace=packages/mcp
+      - name: Build
+        run: npm run build --workspace=packages/mcp
